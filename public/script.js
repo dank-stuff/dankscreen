@@ -14,7 +14,17 @@ form.addEventListener("submit", (e) => {
 function playVideo(width, height) {
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices
-      .getUserMedia({ video: { width, height }, audio: false })
+      .getUserMedia({
+        video: { width, height, frameRate: { ideal: 60 } },
+        audio: {
+          latency: { ideal: 0.001 },
+          sampleRate: { ideal: 48000 },
+          channelCount: { ideal: 2 },
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
+      })
       .then((stream) => {
         captureVideo.srcObject = stream;
         captureVideo.width = width;
