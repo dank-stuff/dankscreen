@@ -3,7 +3,7 @@ name: rex-deployment
 on:
   push:
     branches:
-      - main
+      - master
     paths-ignore:
       - "**.md"
 
